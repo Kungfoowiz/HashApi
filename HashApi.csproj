@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PublishDir>.\publish</PublishDir>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Content Remove=".\Testing\*" />
+    <Content Remove="appsettings_hosting.json" />
+    <Content Remove="appsettings_mine.json" />
   </ItemGroup>
 
   <ItemGroup>

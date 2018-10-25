@@ -1,3 +1,5 @@
+appsettings_hosting.json
 appsettings_mine.json
 /bin
 /obj
+/publish

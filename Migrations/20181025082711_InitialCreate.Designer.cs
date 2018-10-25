@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HashApi.Migrations
 {
     [DbContext(typeof(HashContext))]
-    [Migration("20181023071947_InitialCreate")]
+    [Migration("20181025082711_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

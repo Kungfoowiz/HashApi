@@ -23,7 +23,8 @@ namespace HashApi.Models
       {
         //id = new Random().Next(),
         description = RandomString(200),
-        hashText = hashText
+        hashText = hashText,
+        deleted = false
       };
 
       stopwatch.Stop();

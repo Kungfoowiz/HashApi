@@ -23,7 +23,7 @@ namespace HashApi.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return Ok(hashContext.Hashes.ToList());
+      return Ok(hashContext.Hashes.Where(w => w.deleted == false).ToList());
     }
 
     // GET api/hash/5
@@ -68,7 +68,9 @@ namespace HashApi.Controllers
     {
       var deleteModel = hashContext.Hashes.Where(w => w.id == id).FirstOrDefault();
 
-      hashContext.Hashes.Remove(deleteModel);
+      deleteModel.deleted = true;
+
+      hashContext.Hashes.Update(deleteModel);
       hashContext.SaveChanges();
 
       return NoContent();
