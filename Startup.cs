@@ -1,6 +1,7 @@
 ﻿using HashApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,16 +32,16 @@ namespace HashApi
 
       services.Configure<CookiePolicyOptions>(options =>
       {
-        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
         options.CheckConsentNeeded = context => true;
-        // options.MinimumSameSitePolicy = SameSiteMode.None;
+        options.MinimumSameSitePolicy = SameSiteMode.None;
       });
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
       services.AddCors();
 
-      services.AddDbContext<HashContext>(options => options.UseSqlServer(configuration.GetValue<string>("ConnectionString")));
+      services.AddDbContext<HashContext>(options => options
+        .UseSqlServer(configuration.GetValue<string>("ConnectionString")));
 
     }
 
@@ -56,7 +57,7 @@ namespace HashApi
         app.UseHsts();
       }
 
-      // app.UseHttpsRedirection();
+      app.UseHttpsRedirection();
 
       app.UseCors(builder => builder
           .AllowAnyOrigin()
@@ -65,8 +66,6 @@ namespace HashApi
           .AllowCredentials());
 
       app.UseMvc();
-
-
     }
   }
 }
